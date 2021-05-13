@@ -1,0 +1,801 @@
+<head>
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Paper</title>
+  <link rel="shortcut icon" href="{{url_for('static', filename = 'teacher.png' )}}"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+	<style type="text/css">
+		body
+		{
+			margin-left: 15%;
+			margin-right: 15%;
+		}
+		td {
+padding: 5px;
+}
+table {
+	width: 100%;
+border-spacing: 5px; 
+counter-reset: rowNumber;
+}
+/*
+table tr {
+ counter-increment: rowNumber;
+}
+table tr td:first-child::before {   
+content: counter(rowNumber);   
+min-width: 1em;   
+margin-right: 0.5em;
+}
+*/
+.tdQues
+{
+    margin-left: 5px;
+    width: 90%;
+}
+
+
+
+	</style>
+</head>
+<body>
+
+
+<!--<div>
+
+
+        {%with messages = get_flashed_messages()%}
+
+    {%if messages%}
+
+    {% for message in messages %}
+
+    <div class="alert alert-success alert-dismissable" role="alert">
+
+     <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+
+         <span aria-hidden="true">&times;</span>
+
+     </button>
+        {{message}}
+
+
+
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+</div>
+-->
+
+{% block body %}
+
+{% endblock %}
+
+<br><br>
+
+
+
+	<center style="font-size: 22px">
+	<b>
+		Date: {{date}}<br>
+		Dept. : {{department}} <br>
+	    Subject : {{subject}}  <br>
+	    Subject code : {{subjectCode}}<br>
+	    Time : {{duration}} <br>
+	    Total marks : 70
+	</b>
+	    
+	</center>
+	
+	<div class="whole" style="font-size: 20px;">
+	<br><br>
+    {% set co = 0 %}
+    <h3><u>Q-1</u></h3>
+    {% set co = co + 1 %}
+	<table name="questionsTable" cellpadding="50" cellspacing="50" width="100%">
+
+<fieldset>
+		<legend></legend>
+	
+	
+	 
+	<!-- <h3> Answer below questions: </h3> -->
+	<tbody>
+		        
+		        
+                {% for row in q1a %}
+                
+                    <tr>
+
+
+                   
+                <td> {{co}} </td>
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+
+                
+                
+                </tr>
+               
+              
+                {% endfor %}
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                    
+                
+                
+                {% for row in q1b %}
+                
+                
+                    <tr>
+                   
+                <td> {{co}} </td>
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                
+                </tr>
+               
+              
+                {% endfor %}
+                </tbody>
+                {% set co = co + 1 %}
+
+                <tbody>
+
+                
+                
+                {% for row in q1c %}
+
+                
+                
+                
+                    <tr>
+                   
+                 <td> {{co}} </td>
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                
+                </tr>
+               
+              
+                {% endfor %}
+                </tbody>
+            </fieldset>
+                
+            
+            </table> 
+        
+        
+        
+           
+
+
+
+
+	{% set co = 1 %}
+	<br><br>
+    <h3><u>Q-2</u></h3>
+	<table name="questionsTable" cellpadding="50" cellspacing="50">
+
+	
+	<fieldset>
+		<legend></legend>
+	 
+	<!-- <h3> Answer below questions:  </h3> -->
+	<tbody>
+                
+                {% for row in q2a %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q2b %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q2c %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                </fieldset>
+                
+            
+            </table> 
+            <br>
+        <center>OR</center>
+
+        <table name="questionsTable" cellpadding="50" cellspacing="50">
+
+    
+    <fieldset>
+        <legend></legend>
+     
+    <tbody>
+                
+                {% for row in q2cc %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+            </fieldset>
+        </table>
+        
+
+
+
+	{% set co = 1 %}
+	<br><br>
+    <h3><u>Q-3</u></h3>
+	<table name="questionsTable" cellpadding="50" cellspacing="50">
+
+    
+    <fieldset>
+        <legend></legend>
+     
+    <h3> Answer below questions:  </h3>
+    <tbody>
+                
+                {% for row in q3a %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q3b %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q3c %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                </fieldset>
+                
+            
+            </table> 
+            <br>
+            {% set co = 1 %}
+        <center>OR</center>
+
+        <table name="questionsTable" cellpadding="50" cellspacing="50">
+
+    
+    <fieldset>
+        <legend></legend>
+
+        <tbody>
+                
+                {% for row in q3aa %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q3bb %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+     
+    <tbody>
+                
+                {% for row in q3cc %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+            </fieldset>
+        </table>
+        
+
+
+
+{% set co = 1 %}
+<br><br>
+    <h3><u>Q-4</u></h3>
+    <table name="questionsTable" cellpadding="50" cellspacing="50">
+
+    
+    <fieldset>
+        <legend></legend>
+     
+    <!-- <h3> Answer below questions:  </h3> -->
+    <tbody>
+                
+                {% for row in q4a %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q4b %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q4c %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                </fieldset>
+                
+            
+            </table> 
+            <br>
+        <center>OR</center>
+{% set co = 1 %}
+        <table name="questionsTable" cellpadding="50" cellspacing="50">
+
+    
+    <fieldset>
+        <legend></legend>
+
+        <tbody>
+                
+                {% for row in q4aa %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q4bb %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+     
+    <tbody>
+                
+                {% for row in q4cc %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues">{{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+            </fieldset>
+        </table>
+        
+
+        <br><br>
+    <h3><u>Q-5</u></h3>
+    <table name="questionsTable" cellpadding="50" cellspacing="50">
+
+    
+    <fieldset>
+        <legend></legend>
+        {% set co = 1 %}
+     
+    <!-- <h3> Answer below questions:  </h3> -->
+    <tbody>
+                
+                {% for row in q5a %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q5b %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q5c %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                </fieldset>
+                
+            
+            </table> 
+            <br>
+        <center>OR</center>
+        {% set co = 1 %}
+
+        <table name="questionsTable" cellpadding="50" cellspacing="50">
+
+    
+    <fieldset>
+        <legend></legend>
+
+        <tbody>
+                
+                {% for row in q5aa %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+                <tbody>
+                
+                {% for row in q5bb %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+      
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                {% endfor %}
+
+                
+                </tbody>
+                {% set co = co + 1 %}
+     
+    <tbody>
+                
+                {% for row in q5cc %}
+                
+                
+                    <tr>
+                <td> {{co}} </td>
+
+                <td class = "tdQues"> {{row.0}}</td>
+                <td style="text-align: right"> [{{row.1}}] </td>
+                
+                </tr>
+                
+                
+              
+                
+                {% endfor %}
+
+                
+                </tbody>
+            </fieldset>
+        </table>
+
+
+
+
+
+        
+        
+
+
+        </div>
+        
+        
+        
+           
+
+
+<br>
+<br><br><br><br>
+<center>
+	------------------------------------------<b style="font-size: 16px;">All the best</b>------------------------------------------
+</center>
+
+
+
+<br><br>
+{% set username = username %}
+{% set pdf = 0 %}
+{% set questions1 = questions1 %}
+{% set questions2 = questions2 %}
+{% set questions3 = questions3 %}
+{% set semester = semester %}
+{% set department = department %}
+{% set subject = subject %}
+{% set marks1 = marks1 %}
+{% set marks2 = marks2 %}
+{% set marks3 = marks3 %}
+{% set getPdf = getPdf %}
+
+{% if getPdf == 0 %}
+
+<form action="{{ url_for('PDFOfQuestionPaper',username=username,questions1=questions1,questions2=questions2,questions3=questions3, semester=semester,department=depaartment,subject=subject,marks1=marks1,marks2=marks2,marks3=marks3) }}" method="POST">
+
+
+
+                &nbsp;&nbsp;  <button class="btn btn-primary" type="submit"> Get PDF of Question paper </button>
+
+                
+
+
+               </div>
+
+
+            </form>
+            {% endif %}
+
+            
+            <br><br>
+            
+</body>

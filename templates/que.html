@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Question</title>
+  <link rel="shortcut icon" href="{{url_for('static', filename = 'img/teacher.png' )}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    #mySidenav a {
+      position: fixed;
+      left: -35px;
+      transition: 0.3s;
+      padding: 12px;
+      width: 250px;
+      height:45px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 20px;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      font-family: serif;
+      
+    }
+      
+    #mySidenav a:hover {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+    #mySidenav a:active {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+  #mySidenav {
+  margin-top:180px;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#93a8ac;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+ 
+#about {
+      top: 200px;
+      background-color:  #f44336;
+    }
+    #unit{
+      top: 260px;
+      background-color: #4CAF50;
+    }
+    #question {
+      top: 320px;
+      background-color: #2196F3;
+    }
+    #blog {
+      top: 380px;
+      background-color:darkgoldenrod
+    }
+    #projects {
+      top: 440px;
+      background-color: #1d2f6f
+    }
+    #contact {
+      top: 500px;
+      background-color:#6a4c93
+    }
+    #logout {
+      top: 560px;
+      background-color:#555
+    }
+
+    #navbar {
+  /* overflow: hidden; */
+  background: linear-gradient(to top, #515A5A, #99A3A4);  
+  height: 180px; /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+  position: fixed; /* Sticky/fixed navbar */
+  width: 100%;
+  top: 0;
+  left:0; /* At the top */
+ 
+  /* z-index: 99; */
+}
+h2{
+  font-size: 50px;
+  color: black;
+  margin: 40px;
+  font-family: serif;
+  
+}
+
+
+
+      .tableFixHead {
+        overflow-y: auto;
+        height: 500px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        /* background-color: #33373b; */
+        color: black;
+      }
+      th,
+      td {
+        padding: 8px 16px;
+      }
+      th {
+        background: #424b54;
+      }
+      body
+{
+    counter-reset: Count-Value;     
+}
+
+.tableFixHead {
+        overflow-y: auto;
+        height: 500px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color:white;
+        color:black;
+        border: 2px solid black;
+      }
+      th,
+      td {
+        padding: 8px 16px;
+      }
+      th {
+        background: #424b54;
+        color: white;
+      }
+      body
+{
+    counter-reset: Count-Value;     
+}
+table
+{
+    width: 95%;
+    margin-left: 40px;
+    border-collapse: separate;
+}
+tr td:first-child:before
+{
+  counter-increment: Count-Value;   
+  content: counter(Count-Value);
+}
+
+
+    </style>
+</head>
+<body >
+   <div id="navbar">
+     <h2><b>Automatic Question Paper Generator</b></h2>
+  </div>
+  <div id="mySidenav" class="sidenav">
+    <a href="/dashboard/{{username}}" id="about">ABOUT</a>
+    <a href="/showQuestion/{{username}}" id="question">SHOW QUESTIONS</a>
+    <a href="/showUnit/{{username}}" id="unit">SHOW UNIT</a>
+    <a href="/adddata/{{username}}" id="blog">ADD QUESTION</a>
+    <a href="/generatePaper/{{username}}" id="projects">GENERATE PAPER</a>
+    <a href="/contact/{{username}}" id="contact">CONTACT</a>
+    <a href="/logout" id="logout">LOGOUT</a>
+  </div>
+      <div class="tableFixHead" style="margin-top:210px;margin-left: 270px; font-size:15px">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+           <ul>
+              {% for message in messages %}
+              <h6 class="alert alert-success alert-dismissible">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              {{ message }}</h6>
+              {% endfor %}
+           </ul>
+        {% endif %}
+     {% endwith %}
+        <table>
+          <thead>
+          <tr>
+            <th>SR.NO</th>
+            <!-- <th>Subject code</th> -->
+            <th>Unit</th>
+            <th>Marks</th>
+            <!-- <th>Difficulty Level</th> -->
+            <th>Question</th>
+            <th>Auto</th>
+            <th></th>
+            <th></th>
+
+            </tr>
+          </thead>
+            {% for row in que %}
+            <tr>
+              
+              <td></td>
+              <!-- <td>{{row[2]}}</td> -->
+              <td>{{row[3]}}</td>
+              <!-- <td>{{row[4]}}</td> -->
+              <td>{{row[5]}}</td>
+              <td>{{row[6]}}</td>
+              <td>{{row[7]}}</td>
+              <!-- <form method="POST" data-toggle="modal" data-target="#myModal{{row[0]}}"><td><button>Edit</button></td></form> -->
+              <!-- <a href="/update/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>  -->
+              <td><button type="button" data-toggle="modal" data-target="#myModal{{row[0]}}" style="color:white; background-color:darkorange;">Edit</button></td>
+              <form action="/delete_data1/{{row[0]}}/{{username}}/{{row[2]}}" method="POST" ><td><button style="color:white; background-color: #f44336;">Delete</button></td></form>
+           
+            </tr>
+
+            <div class="modal fade" id="myModal{{row[0]}}" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Information</h4>
+                  </div>
+                  <div class="modal-body">
+                   <form action="{{ url_for('update1',username=username,subject_code=row[2]) }}" method="POST" name="updateForm">
+                    <input type="hidden"  name="id" value="{{row.0}}">
+                <label for="lname">Unit:</label>
+                <input type="number" id="lname" name="unit" value={{row[3]}} style="width: 100%;">
+            
+                <!-- <label for="country">Difficulty Level:</label><br>
+                Easy <input type="radio" name="difficultyLevel" id="easy" value="Easy" {% if row[4]=='Easy' %} checked="1" {% endif %}>&nbsp;&nbsp;&nbsp;
+                Medium <input type="radio" name="difficultyLevel" id="average" value="Medium" {%if row[4]=='Medium'%} checked="1" {% endif %}>&nbsp;&nbsp;&nbsp;
+                Hard <input type="radio" name="difficultyLevel" id="difficult" value="Hard" {%if row[4]=='Hard'%} checked="1" {% endif %}><br>
+             -->
+            
+                <label for="marks">Marks:</label>
+                <input type="number" id="marks" name="marks" value={{row[5]}} style="width: 100%;">
+                <label for="lname">Question:</label>
+               <textarea rows = "3" cols = "50" name = "question" style="width: 100%;">{{row[6]}} </textarea>
+         
+         
+
+         <button class="btn btn-primary" type="sbumit" style="margin-left: 40%;width: 20%; height: 40px; border-radius: 8px;">Update</button>
+         
+                      
+         
+         
+                   </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+              </div>
+           
+            
+  
+            {% endfor %}
+        </table>
+         
+
+      </div>
+      
+      
+
+</body>
+</html>

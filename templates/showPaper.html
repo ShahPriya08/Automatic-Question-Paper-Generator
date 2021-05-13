@@ -1,0 +1,23 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <table>
+            <thead>
+            <tr>
+              <th>fileName</th>
+              <th>Data</th>
+              </tr>
+            </thead>
+            {% for row in papers %}
+            <tr>
+              
+            
+              <td>{{row[0]}}</td>
+              <td>{{row[1]}}</td>
+              
+              </tr>
+              {% endfor %}
+    </body>
+</html>

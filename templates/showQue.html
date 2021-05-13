@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show Questions</title>
+  <link rel="shortcut icon" href="{{url_for('static', filename = 'img/teacher.png' )}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src ="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link rel= "stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> -->
+<style>
+    #mySidenav a {
+      position: fixed;
+      left: -35px;
+      transition: 0.3s;
+      padding: 12px;
+      width: 250px;
+      height:45px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 20px;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      font-family: serif;
+      
+    }
+      
+    #mySidenav a:hover {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+    #mySidenav a:active {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+  #mySidenav {
+  margin-top:180px;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#93a8ac;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+ 
+#about {
+      top: 200px;
+      background-color:  #f44336;
+    }
+    #unit{
+      top: 260px;
+      background-color: #4CAF50;
+    }
+    #question {
+      top: 320px;
+      background-color: #2196F3;
+    }
+    #blog {
+      top: 380px;
+      background-color:darkgoldenrod
+    }
+    #projects {
+      top: 440px;
+      background-color: #1d2f6f
+    }
+    #contact {
+      top: 500px;
+      background-color:#6a4c93
+    }
+    #logout {
+      top: 560px;
+      background-color:#555
+    }
+
+    #navbar {
+  /* overflow: hidden; */
+  background: linear-gradient(to top, #515A5A, #99A3A4);  
+  height: 180px; /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+  position: fixed; /* Sticky/fixed navbar */
+  width: 100%;
+  top: 0;
+  left:0; /* At the top */
+ 
+  /* z-index: 99; */
+}
+h2{
+  font-size: 50px;
+  color: black;
+  margin: 40px;
+  font-family: serif;
+  
+}
+
+
+      .tableFixHead {
+        overflow-y: auto;
+        height: 500px;
+      }
+      .tableFixHead thead th {
+        position: sticky;
+        top: 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color:white;
+        color:black;
+        border: 2px solid black;
+      }
+      th,
+      td {
+        padding: 8px 16px;
+      }
+      th {
+        background: #424b54;
+        /* background: white; */
+        color: white;
+      }
+      body
+{
+    counter-reset: Count-Value;     
+}
+table
+{
+    width: 95%;
+    margin-left: 40px;
+    border-collapse: separate;
+}
+tr td:first-child:before
+{
+  counter-increment: Count-Value;   
+  content: counter(Count-Value);
+}
+.alert{
+  background-color:#4CAF50;
+  color:white;
+  /* margin-left: 0px; */
+}
+input {
+        width: 100%;
+        padding: 3px;
+        background:white ;
+        box-sizing: border-box;
+        color: black;
+    }
+  
+    </style>
+</head>
+<body >
+  <div id="navbar"><h2><b>Automatic Question Paper Generator</b></h2> </div>
+   <div id="mySidenav" class="sidenav">
+    <a href="/dashboard/{{username}}" id="about">ABOUT</a>
+    <a href="/showQuestion/{{username}}" id="question">SHOW QUESTIONS</a>
+    <a href="/showUnit/{{username}}" id="unit">SHOW UNIT</a>
+    <a href="/adddata/{{username}}" id="blog">ADD QUESTION</a>
+    <a href="/generatePaper/{{username}}" id="projects">GENERATE PAPER</a>
+    <a href="/contact/{{username}}" id="contact">CONTACT</a>
+    <a href="/logout" id="logout">LOGOUT</a>
+  </div>
+      <div class="tableFixHead" style="margin-top:210px;margin-left: 270px; font-size:15px">
+        {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <h6 class="alert alert-success alert-dismissible">
+               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+               {{ message }}</h6>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+    
+        <table id="example" class="display" style="width:100%">
+          <thead>
+          <tr>
+            <th>SR.NO</th>
+            <th style="width:120px">Subject code</th>
+            <th style="width:120px">Unit</th>
+            <th style="width:120px">Marks</th>
+            <!-- <th>Difficulty Level</th> -->
+            <th>Question</th>
+            <th>Auto</th>
+            <th style="width:50px">Action</th>
+            <!-- <th></th> -->
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in show_data %}
+            <tr>
+              
+              <td></td>
+              <td>{{row[2]}}</td>
+              <td>{{row[3]}}</td>
+              <td>{{row[5]}}</td>
+              <!-- <td>{{row[4]}}</td> -->
+              <td>{{row[6]}}</td>
+              <td>{{row[7]}}</td>
+              <!-- <form method="POST" data-toggle="modal" data-target="#myModal{{row[0]}}"><td><button>Edit</button></td></form> -->
+              <!-- <a href="/update/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>  -->
+              <!-- <td  style="width: 230px;"><button type="button" data-toggle="modal" data-target="#myModal{{row[0]}}" style="color:white; background-color:darkorange;">Edit</button>
+              <form action="/delete_data/{{row[0]}}/{{username}}" method="POST" ><button style="color:white; background-color: #f44336;">Delete</button></form>
+              </td> -->
+              <td style="width: 200px;">
+                <a href= "#myModal{{row[0]}}" data-toggle="modal" data-target="#myModal{{row[0]}}" style="color:white; background-color:darkorange;" class="btn btn-secondary btn-sm">Edit</a>
+                <a href="/delete_data/{{row[0]}}/{{username}}" style="color:white; background-color: #f44336;" class="btn btn-danger btn-delete btn-sm">Delete</a>
+              </td>
+           
+            </tr>
+            <div class="modal fade" id="myModal{{row[0]}}" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Information</h4>
+                  </div>
+                  <div class="modal-body">
+                   <form action="{{ url_for('update',username=username) }}" method="POST" name="updateForm">
+                    <input type="hidden"  name="id" value="{{row.0}}">
+                    <label for="lname">Subject Code::</label>
+                <input type="text" id="subjectCode" name="subjectCode" value={{row[2]}} style="width: 100%;">
+                <label for="lname">Unit:</label>
+                <input type="number" id="lname" name="unit" value={{row[3]}} style="width: 100%;">
+            
+                <!-- <label for="country">Difficulty Level:</label><br>
+                Easy <input type="radio" name="difficultyLevel" id="easy" value="Easy" {% if row[4]=='Easy' %} checked="1" {% endif %}>&nbsp;&nbsp;&nbsp;
+                Medium <input type="radio" name="difficultyLevel" id="average" value="Medium" {%if row[4]=='Medium'%} checked="1" {% endif %}>&nbsp;&nbsp;&nbsp;
+                Hard <input type="radio" name="difficultyLevel" id="difficult" value="Hard" {%if row[4]=='Hard'%} checked="1" {% endif %}><br>
+             -->
+            
+                <label for="marks">Marks:</label>
+                <input type="number" id="marks" name="marks" value={{row[5]}} style="width: 100%;">
+                <label for="lname">Question:</label>
+               <textarea rows = "3" cols = "50" name = "question" style="width: 100%;">{{row[6]}} </textarea>
+         
+         
+
+         <button class="btn btn-primary" type="sbumit" style="margin-left: 40%;width: 20%; height: 40px; border-radius: 8px;">Update</button>
+         
+                      
+         
+         
+                   </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+              </div>
+
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              
+                <th style="visibility: hidden;">SR.NO</th>
+                <th style="background: white;">Subject code</th>
+                <th style="background: white;">Unit</th>
+                <th style="background: white;">Marks</th>
+                <!-- <th>Difficulty Level</th> -->
+                <th style="background: white;">Question</th>
+                <th style="visibility: hidden;">Auto</th>
+                <th style="visibility: hidden;">Action</th>
+                <!-- <th></th> -->
+    
+               
+            </tr>
+        </tfoot>
+        </table>
+        <script>
+          const btnDelete= document.querySelectorAll('.btn-delete');
+          if(btnDelete) {
+            const btnArray = Array.from(btnDelete);
+            btnArray.forEach((btn) => {
+              btn.addEventListener('click', (e) => {
+                if(!confirm('Are you sure you want to delete it?')){
+                  e.preventDefault();
+                }
+              });
+            })
+          }
+           
+          // $(document).ready(function() {
+          //     $('#example').DataTable({     
+          //       "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+          //         "iDisplayLength": 5,
+          //         scrollY:        '50vh',
+          //         scrollCollapse: true,
+        
+          //         // "info":false,
+          //         // "searching":false,
+          //         "order": [[ 5, "desc" ]],
+          //         "dom": '<"top"i>rt<"bottom"flp><"clear">',
+          //         "pagingType": "full_numbers"
+          //        } 
+          //     );
+          // } );
+          
+          $(document).ready(function() {
+    // Setup - add a text input to each footer cell
+    
+    $('#example tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    // DataTable
+    var table = $('#example').DataTable({
+      "aLengthMenu": [[3, 5, 8,10, 25, -1], [3, 5,8, 10, 25, "All"]],
+                  "iDisplayLength": 5,
+                  scrollY:        '35vh',
+                  scrollCollapse: true,
+        
+                  // "info":false,
+                  // "searching":false,
+                  "order": [[ 5, "desc" ]],
+                  // "dom": '<"top"i>rt<"bottom"flp><"clear">',
+                  "pagingType": "full_numbers",
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+ 
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+ 
+} );
+           
+          </script>
+            </body>
+          </html>
+
+      </div>
+      
+      
+
+</body>
+</html>

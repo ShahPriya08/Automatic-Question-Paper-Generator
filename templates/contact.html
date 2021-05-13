@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+<link rel="shortcut icon" href="{{url_for('static', filename = 'img/teacher.png' )}}">
+
+<style>
+    #mySidenav a {
+      position: fixed;
+      left: -40px;
+      transition: 0.3s;
+      padding: 12px;
+      width: 230px;
+      height:20px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 20px;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      
+    }
+    
+    #mySidenav a:hover {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+    #mySidenav a:active {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+  #mySidenav {
+  margin-top:180px;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#93a8ac;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+ 
+#about {
+      top: 200px;
+      background-color:  #f44336;
+    }
+    #unit{
+      top: 260px;
+      background-color: #4CAF50;
+    }
+    #question {
+      top: 320px;
+      background-color: #2196F3;
+    }
+    #blog {
+      top: 380px;
+      background-color:darkgoldenrod
+    }
+    #projects {
+      top: 440px;
+      background-color: #1d2f6f
+    }
+    #contact {
+      top: 500px;
+      background-color:#6a4c93
+    }
+    #logout {
+      top: 560px;
+      background-color:#555
+    }
+
+
+    #navbar {
+  /* overflow: hidden; */
+  background: linear-gradient(to top, #515A5A, #99A3A4); 
+  height: 180px; /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+  position: fixed; /* Sticky/fixed navbar */
+  width: 100%;
+  top: 0;
+  left:0; /* At the top */
+ 
+  /* z-index: 99; */
+}
+h2{
+  font-size: 50px;
+  color: black;
+  margin: 40px;
+}
+ #box{
+   width: 340px;
+   height: 300px;
+   border: solid 1px black;
+   margin:30px;
+   float: left;
+ }
+ #box1{
+   width: 340px;
+   height: 300px;
+   border: solid 1px black;
+   margin:30px;
+   float: left;
+ }
+ #box2{
+   width: 340px;
+   height: 300px;
+   border: solid 1px black;
+   margin:30px;
+   float: left;
+ }
+ .myStyle
+{
+  
+  position: relative;
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  margin-right: 15px;
+  padding: 20px;
+  font-size: 20px;
+  
+}
+
+
+    </style>
+</head>
+<body >
+   <div id="navbar"><h2>Automatic Question Paper Generator</h2> </div>
+   <div id="mySidenav" class="sidenav">
+    <a href="/dashboard/{{username}}" id="about">ABOUT</a>
+    <a href="/showQuestion/{{username}}" id="question">SHOW QUESTIONS</a>
+    <a href="/showUnit/{{username}}" id="unit">SHOW UNITS</a>
+    <a href="/adddata/{{username}}" id="blog">ADD QUESTION</a>
+    <a href="/generatePaper/{{username}}" id="projects">GENERATE PAPER</a>
+    <a href="/contact/{{username}}" id="contact">CONTACT</a>
+    <a href="/logout" id="logout">LOGOUT</a>
+  </div>
+      <div style="margin-top:210px;margin-left: 270px; font-size:30px">
+         <div id="box">
+          <div class="myStyle">
+            <br><br>
+            GHOSHA SHAH<br><br>
+            &#9743; : 
+            &nbsp; &nbsp; +91 7600052854
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <!-- <a href="tel:7600052854">Call now</a> -->
+          
+            <br>
+            &#9993; :
+            &nbsp; &nbsp; 
+            <a href="mailto:ghoshar99@gmail.com">ghoshar99@gmail.com</a>
+            <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+         </div>
+         <div id="box1">
+          <div class="myStyle">
+            <br><br>
+            PRIYA SHAH<br><br>
+          &#9743; : 
+          &nbsp; &nbsp; +91 7046328070
+          <br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <!-- <a href="tel:7406328070">Call now</a>-->
+        
+         
+         
+          <br>
+          &#9993; :
+          &nbsp; &nbsp; 
+          <a href="mailto:priyashah452@gmail.com">priyashah452@gmail.com</a>
+          <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <!-- <a href="mailto:priyashah452@gmail.com">Send Email</a>-->
+      
+         </div>
+         </div>
+         <div id="box2"><div class="myStyle">
+          <br><br>
+          VINI PRAJAPATI<br><br>
+        &#9743; : 
+        &nbsp; &nbsp; +91 9265311640
+        <br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <!-- <a href="tel:9265311640">Call now</a>-->
+     
+        <br>
+        &#9993; :
+        &nbsp; &nbsp; 
+        <a href="mailto:prajapati1vini@gmail.com">prajapati1vini@gmail.com</a>
+       
+    
+       </div></div>
+         
+
+      </div>
+      
+      
+
+</body>
+</html>

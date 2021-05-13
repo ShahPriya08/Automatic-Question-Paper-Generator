@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generate Paper</title>
+<link rel="shortcut icon" href="{{url_for('static', filename = 'img/teacher.png' )}}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+      #mySidenav a {
+      position: fixed;
+      left: -35px;
+      transition: 0.3s;
+      padding: 12px;
+      width: 250px;
+      height:45px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 20px;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      font-family: serif;
+      
+    }
+    
+    #mySidenav a:hover {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+    #mySidenav a:active {
+      left: 0;
+      text-decoration:underline;
+     
+    }
+  #mySidenav {
+  margin-top:180px;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#93a8ac;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+ 
+#about {
+      top: 200px;
+      background-color:  #f44336;
+    }
+    #unit{
+      top: 260px;
+      background-color: #4CAF50;
+    }
+    #question {
+      top: 320px;
+      background-color: #2196F3;
+    }
+    #blog {
+      top: 380px;
+      background-color:darkgoldenrod
+    }
+    #projects {
+      top: 440px;
+      background-color: #1d2f6f
+    }
+    #contact {
+      top: 500px;
+      background-color:#6a4c93
+    }
+    #logout {
+      top: 560px;
+      background-color:#555
+    }
+
+
+    #navbar {
+  /* overflow: hidden; */
+  background: linear-gradient(to top, #515A5A, #99A3A4); 
+  height: 180px; /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+  position: fixed; /* Sticky/fixed navbar */
+  width: 100%;
+  top: 0;
+  left:0; /* At the top */
+ 
+  /* z-index: 99; */
+}
+h2{
+  font-size: 50px;
+  color:black;
+  margin: 40px;
+  font-family: serif;
+  
+}
+ #box{
+   width: 340px;
+   height: 400px;
+   border: solid 1px black;
+   margin:30px;
+   float: left;
+ }
+ #box1{
+   width: 340px;
+   height: 400px;
+   border: solid 1px black;
+   margin:30px;
+   float: left;
+ }
+
+ form{
+    margin-left: 20%;
+    width: 340px;
+    /* height: 600px; */
+}
+.form-body{
+    background-color:white;
+    box-shadow: 0px 0px 10px 0px #000;
+    padding:20px;
+    border:3px solid#3e4043;
+}
+
+.innter-form{
+	padding-top:10px;
+}
+
+
+    </style>
+</head>
+<body >
+   <div id="navbar"><h2><b>Automatic Question Paper Generator</b></h2> </div>
+   <div id="mySidenav" class="sidenav">
+    <div id="mySidenav" class="sidenav">
+      <a href="/dashboard/{{username}}" id="about">ABOUT</a>
+      <a href="/showQuestion/{{username}}" id="question">SHOW QUESTIONS</a>
+      <a href="/showUnit/{{username}}" id="unit">SHOW UNIT</a>
+      <a href="/adddata/{{username}}" id="blog">ADD QUESTION</a>
+      <a href="/generatePaper/{{username}}" id="projects">GENERATE PAPER</a>
+      <a href="/contact/{{username}}" id="contact">CONTACT</a>
+      <a href="/logout" id="logout">LOGOUT</a>
+    </div>
+  </div>
+  <div style="margin-top:210px;margin-left: 270px; font-size:20px">  
+    {%with messages = get_flashed_messages(with_categories=true)%}
+
+    {%if messages%}
+    
+    {% for category,message in messages %}
+    
+    <div class="alert alert-{{ category }} alert-dismissable" role="alert">
+    
+     <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+    
+         <span aria-hidden="true">&times;</span>
+    
+     </button>
+        {{message}}
+    </div>
+    
+    
+    {%endfor%}
+    {%endif%}
+    {%endwith%} 
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-body">
+            <div class="tab-content">
+               <div class="innter-form">
+                <form action="/generate_paper/{{username}}" method="post" name="SectionForm">
+                  <fieldset>
+                      <legend style="color:#2196F3;"><b>GENERATE QUESTION PAPER</b></legend>
+                      <label for="name">Semester:</label><br>
+                      1 <input type="radio" name="semester" id="1" value="1" checked>&nbsp;&nbsp;&nbsp;
+                      2 <input type="radio" name="semester" id="2" value="2">&nbsp;&nbsp;&nbsp;
+                      3 <input type="radio" name="semester" id="3" value="3">&nbsp;&nbsp;&nbsp;
+                      4 <input type="radio" name="semester" id="4" value="4">&nbsp;&nbsp;&nbsp; <br>
+                      5 <input type="radio" name="semester" id="5" value="5">&nbsp;&nbsp;&nbsp;
+                      6 <input type="radio" name="semester" id="6" value="6">&nbsp;&nbsp;&nbsp;
+                      7 <input type="radio" name="semester" id="7" value="7">&nbsp;&nbsp;&nbsp;
+                      8 <input type="radio" name="semester" id="8" value="8">&nbsp;&nbsp;&nbsp;<br> 
+                      <label for="department" class="innter-form">Department:</label>
+                      <input type="text" id="dname" name="department" required><br>
+                      <label for="sub_code" class="innter-form">Subject Code:</label>
+                      <input type="text" id="fname" name="subject code" required><br>
+                      <label for="name"  class="innter-form">Subject:</label>
+                      <input type="text" name="subject" id="subject" required = "1" minlength="2"><br>
+                      <label for="name"  class="innter-form">Time duration:</label><br>
+                      <input type="number" placeholder="hours" name="hours" id="hours" required = "1" minlength="1" min="0" max="4">
+                      <input type="number" placeholder="minute" name="mins" id="mins" required = "1" minlength="1" min="0" max="59"><br><br>
+                      <input type = "submit" name = "submit" value = "Generate Question Paper" style="margin-left: 20%; height: 40px;background-color: lightskyblue; border-radius: 8px;" />
+                  </fieldset>
+                </form>
+             </div>
+          </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+
+      
+      
+
+</body>
+</html>
